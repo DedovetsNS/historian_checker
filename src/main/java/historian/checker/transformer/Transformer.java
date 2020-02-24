@@ -1,14 +1,20 @@
 package historian.checker.transformer;
 
-import historian.checker.dto.HistorianDto;
-import historian.checker.model.Historian;
-
 import java.util.Set;
+import java.util.stream.Collectors;
 
-public interface Transformer {
-    Historian toEntity(HistorianDto historianDto);
+public interface Transformer<E, D> {
+    E toEntity(D dto);
 
-    HistorianDto toDto(Historian historian);
+    D toDto(E entity);
 
-    Set<HistorianDto> toDto(Set<Historian> historians);
+
+    default Set<E> toEntity(Set<D> dtos) {
+        return dtos.stream().map(this::toEntity).collect(Collectors.toSet());
+    }
+
+    default Set<D> toDto(Set<E> entities) {
+        return entities.stream().map(this::toDto).collect(Collectors.toSet());
+    }
+
 }

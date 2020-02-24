@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class HistorianTransformer implements Transformer {
+public class HistorianTransformer implements Transformer<Historian, HistorianDto> {
 
     @Override
     public Historian toEntity(HistorianDto historianDto) {
@@ -39,14 +39,6 @@ public class HistorianTransformer implements Transformer {
                 .specificLibraryAccess(historian.getSpecificLibraryAccess())
                 .build();
     }
-
-    @Override
-    public Set<HistorianDto> toDto(Set<Historian> historians) {
-        Set<HistorianDto> historianDto = new HashSet<>();
-        historians.forEach(historian -> historianDto.add(toDto(historian)));
-        return historianDto;
-    }
-
 
     private CustomerDto historianToCustomerDto(Historian historian) {
         CustomerDto customerDto = new CustomerDto();
