@@ -15,4 +15,8 @@ public interface HistorianRepository extends CrudRepository<Historian, Long> {
             Boolean access);
 
     Set<Historian> findAllBySpecificLibraryAccessEquals(Boolean access);
+
+    Boolean existsByFirstNameAndLastName(String firstName, String lastName);
+
+    Set<Historian> findAll();
  }
