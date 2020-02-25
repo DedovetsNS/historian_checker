@@ -36,13 +36,13 @@ public class HistorianController {
     public Boolean checkAccess(@PathVariable("firstName") String firstName,
                                @PathVariable("lastName") String lastName) {
         Boolean access = historianService.checkSpecificAccess(firstName, lastName);
-        log.info(LOG_GET,"Specific Access= "+access , firstName+" "+lastName);
+        log.info(LOG_GET, "Specific Access= " + access, firstName + " " + lastName);
         return access;
     }
 
     @GetMapping("/AllWithAccess")
     Set<CustomerDto> findAllWithAccess() {
-        log.info(LOG_GET_SET_BY,CustomerDto.class.toString(),"Customer specificAccess = true");
+        log.info(LOG_GET_SET_BY, CustomerDto.class.toString(), "Customer specificAccess = true");
         return historianTransformer.historianToCustomerDto(historianService.findAllWithAccess());
 
     }

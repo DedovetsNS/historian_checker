@@ -19,4 +19,4 @@ public interface HistorianRepository extends CrudRepository<Historian, Long> {
     Boolean existsByFirstNameAndLastName(String firstName, String lastName);
 
     Set<Historian> findAll();
- }
+}
